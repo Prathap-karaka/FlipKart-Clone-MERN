@@ -5,7 +5,7 @@ import { Box, Typography, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles({
   component: {
     display: "flex",
-    margin: "55px 100px 0px 130px",
+    margin: "55px 100px",
     padding: "12px 8px",
     justifyContent: "space-between",
   },

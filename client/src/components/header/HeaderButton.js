@@ -28,6 +28,15 @@ const HeaderButton = () => {
       <Button variant="contained" color="primary" className={classes.login}>
         Login
       </Button>
+      <Typography
+        style={{
+          paddingLeft: 10,
+          display: "flex",
+          fontWeight: 600,
+        }}
+      >
+        More
+      </Typography>
       <box>
         <Link to="/cart" className={classes.container}>
           <Badge badgeContent={9} color="secondary">
@@ -38,15 +47,6 @@ const HeaderButton = () => {
           </Typography>
         </Link>
       </box>
-      <Typography
-        style={{
-          paddingLeft: 10,
-          display: "flex",
-          fontWeight: 600,
-        }}
-      >
-        More
-      </Typography>
     </box>
   );
 };

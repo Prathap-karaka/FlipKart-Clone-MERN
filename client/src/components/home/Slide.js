@@ -33,7 +33,7 @@ const responsive = {
 
 const useStyles = makeStyles((theme) => ({
   img: {
-    height: 150,
+    height: 140,
     width: 140,
   },
   text: {
@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 5,
   },
   conatiner: {
-    margin: 20,
+    margin: 1,
   },
   deals: {
-    margin: 20,
+    margin: 10,
     fontWeight: 600,
     display: "flex",
     alignItems: "center",
@@ -53,6 +53,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     backgroundColor: "2874f0",
     borderRadius: 2,
+  },
+  component: {
+    backgroundColor: "#fff",
+    padding: 2,
   },
 }));
 
@@ -64,23 +68,33 @@ const renderer = ({ hours, minutes, seconds }) => {
   );
 };
 
-const Slide = () => {
+const Slide = ({ timer, title }) => {
   const classes = useStyles();
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
   return (
-    <Box>
+    <Box className={classes.component}>
       <Box className={classes.deals}>
-        <Box> Deals of The day</Box>
-        <img
-          src={timerURL}
-          style={{ paddingLeft: "20px", paddingRight: "20px" }}
-        />
-        <Countdown date={Date.now() + 3.24e7} renderer={renderer} />
-        <Button variant="contained" color="primary" className={classes.button}>
-          View All
-        </Button>
+        <Box> {title}</Box>
+        {timer && (
+          <>
+            <img
+              src={timerURL}
+              style={{ paddingLeft: "20px", paddingRight: "20px" }}
+            />
+            <Countdown date={Date.now() + 3.24e7} renderer={renderer} />
+
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              View All
+            </Button>
+          </>
+        )}
       </Box>
+      <Divider />
 
       <Carousel
         swipeable={false}
