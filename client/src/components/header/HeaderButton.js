@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { Box, Button, makeStyles, Typography, Badge } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 // components
 import Login from "../user/Login";
+import { LoginContext } from "../../context/ContextProvider";
+import Profile from "./Profile";
 
 const useStyles = makeStyles({
   login: {
@@ -29,20 +31,28 @@ const HeaderButton = () => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+  const { account, setAccount } = useContext(LoginContext);
   const openPopup = () => setOpen(true);
 
   return (
-    <box className={classes.container}>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.login}
-        onClick={() => {
-          openPopup();
-        }}
-      >
-        Login
-      </Button>
+    <Box className={classes.container}>
+      {account ? (
+        <Profile account={account} setAccount={setAccount} />
+      ) : (
+        <Link style={{ textDecoration: "none " }}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.login}
+            onClick={() => {
+              openPopup();
+            }}
+          >
+            Login
+          </Button>
+        </Link>
+      )}
+
       <Typography
         style={{
           paddingLeft: 10,
@@ -52,7 +62,7 @@ const HeaderButton = () => {
       >
         More
       </Typography>
-      <box>
+      <Box>
         <Link to="/cart" className={classes.container}>
           <Badge badgeContent={9} color="secondary">
             <ShoppingCartIcon />
@@ -61,9 +71,9 @@ const HeaderButton = () => {
             Cart
           </Typography>
         </Link>
-        <Login open={open} setOpen={setOpen} />
-      </box>
-    </box>
+        <Login open={open} setOpen={setOpen} setAccount={setAccount} />
+      </Box>
+    </Box>
   );
 };
 
