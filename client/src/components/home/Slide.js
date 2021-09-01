@@ -7,7 +7,7 @@ import {
   Button,
   Divider,
 } from "@material-ui/core";
-import { products } from "../constants/NavData";
+// import { products } from "../constants/NavData";
 import Countdown from "react-countdown";
 import { style } from "@material-ui/system";
 
@@ -68,7 +68,7 @@ const renderer = ({ hours, minutes, seconds }) => {
   );
 };
 
-const Slide = ({ timer, title }) => {
+const Slide = ({ timer, title, products }) => {
   const classes = useStyles();
   const timerURL =
     "https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg";
