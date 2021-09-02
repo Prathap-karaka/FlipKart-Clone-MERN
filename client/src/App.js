@@ -1,13 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
-//components
-import Header from "./components/header/Header";
-import Home from "./components/home/Home";
-import Cart from "./components/cart/Cart";
+import { Home, NotFound } from "./Components/default";
+import Header from "./Components/Header/Header";
+import DetailedView from "./Components/ItemDetails/DetailedView";
 import TemplateProvider from "./theme/TemplateProvider";
 import ContextProvider from "./context/ContextProvider";
+import Cart from "./Components/Cart/Cart";
+import { Box } from "@material-ui/core";
 
 function App() {
   return (
@@ -15,10 +13,15 @@ function App() {
       <ContextProvider>
         <BrowserRouter>
           <Header />
-          <switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/cart" component={Cart} />
-          </switch>
+          <Box style={{ marginTop: 54 }}>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route exact path="/cart" component={Cart} />
+              {/* <Route exact path= '/product/:id' component={Product} /> */}
+              <Route exact path="/product/:id" component={DetailedView} />
+              <Route component={NotFound} />
+            </Switch>
+          </Box>
         </BrowserRouter>
       </ContextProvider>
     </TemplateProvider>

@@ -1,38 +1,42 @@
-import React from "react";
-import { navData } from "../constants/NavData";
-import { Box, Typography, makeStyles } from "@material-ui/core";
+import { Box, makeStyles, Typography } from "@material-ui/core";
+import { navData } from "../../constant/data";
 
-const useStyles = makeStyles({
+const useStyle = makeStyles((theme) => ({
   component: {
     display: "flex",
-    margin: "55px 100px",
-    padding: "12px 8px",
     justifyContent: "space-between",
+    margin: "55px 130px 0 130px",
+    overflowX: "overlay",
+    [theme.breakpoints.down("md")]: {
+      margin: 0,
+    },
   },
   container: {
+    padding: "12px 8px",
     textAlign: "center",
   },
-  img: {
-    width: 65,
+  image: {
+    width: 64,
   },
-});
+  text: {
+    fontSize: 14,
+    fontWeight: 600,
+    fontFamily: "inherit",
+  },
+}));
 
-const Navbar = () => {
-  const classes = useStyles();
+const NavBar = () => {
+  const classes = useStyle();
   return (
     <Box className={classes.component}>
-      {navData.map((data) => {
-        return (
-          <Box className={classes.container}>
-            <img src={data.url} className={classes.img}></img>
-            <Typography variant="h6" style={{ fontSize: 15, fontWeight: 600 }}>
-              {data.text}
-            </Typography>
-          </Box>
-        );
-      })}
+      {navData.map((temp) => (
+        <Box className={classes.container}>
+          <img src={temp.url} className={classes.image} />
+          <Typography className={classes.text}>{temp.text}</Typography>
+        </Box>
+      ))}
     </Box>
   );
 };
 
-export default Navbar;
+export default NavBar;
